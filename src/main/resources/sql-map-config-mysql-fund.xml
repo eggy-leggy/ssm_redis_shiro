@@ -9,9 +9,6 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 		<setting name="lazyLoadingEnabled" value="false" />
 	</settings>
-	<typeAliases>
-		<typeAlias type="com.ibm.test.bean.FundsBaseBean" alias="FundsBaseBean" />
-	</typeAliases>
 	<mappers>
 		<mapper resource="com/ibm/test/dao/FundBaseMapper.xml" />
 	</mappers>

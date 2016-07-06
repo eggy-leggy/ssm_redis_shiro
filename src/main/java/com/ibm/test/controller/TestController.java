@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.test.bean.FundsBaseBean;
 import com.ibm.test.service.impl.FundServiceImpl;
+import com.ibm.test.util.RedisClientTemplate;
 
 @RestController
 @RequestMapping(value="/funds",produces=MediaType.APPLICATION_JSON_VALUE)
@@ -21,8 +22,13 @@ public class TestController {
 	@Autowired
 	private FundServiceImpl fundService;
 	
+	@Autowired
+	private RedisClientTemplate redisClientTemplate;
+	
 	@RequestMapping(value="/query",method=RequestMethod.GET)
 	public List<FundsBaseBean> qeuryList(){
+		redisClientTemplate.set("ss", "bb");
+		System.out.println(redisClientTemplate.get("ss"));
 		return fundService.getAllFundsBase();
 	}
 	

@@ -22,8 +22,14 @@
         <property name="locations">
             <value>classpath*:jdbc.properties</value>
         </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" /> 
     </bean>
-    
+    	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <value>classpath*:redis.properties</value>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+    </bean>
     <!-- 获取数据源 mysql fund -->
 	<bean id="dataSourceMysql" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -55,7 +61,9 @@
 		</tx:attributes>
 	</tx:advice>
     
+    <import resource="app-redis.xml" />
     <import resource="app-funds-fundsdata.xml" />
+    
 </beans>
 
 
