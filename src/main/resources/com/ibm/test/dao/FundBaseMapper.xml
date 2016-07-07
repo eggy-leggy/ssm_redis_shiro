@@ -4,8 +4,8 @@
 <mapper namespace="Fund">
 
 	<resultMap id="BaseResultMap" type="com.ibm.test.bean.FundsBaseBean" >
-		<result column="fund_code" property="fundCode" />
-		<result column="fund_name_short" property="fundNameShort" />
+		<result column="fund_code" property="fundCode" jdbcType="INTEGER" />
+		<result column="fund_name_short" property="fundNameShort" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<select id="getAllFundsBase" resultMap="BaseResultMap">

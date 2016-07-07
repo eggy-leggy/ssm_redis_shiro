@@ -17,19 +17,19 @@
     <!-- 自动扫描  -->
     <context:component-scan base-package="com.ibm.test.*" />
     
-    <!-- 数据库连接配置 -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <value>classpath*:jdbc.properties</value>
-        </property>
-        <property name="ignoreUnresolvablePlaceholders" value="true" /> 
-    </bean>
-    	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <value>classpath*:redis.properties</value>
-        </property>
-        <property name="ignoreUnresolvablePlaceholders" value="true" />
-    </bean>
+    <!-- 引入属性文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:redis.properties</value>
+			</list>
+		</property>
+	</bean>
+
     <!-- 获取数据源 mysql fund -->
 	<bean id="dataSourceMysql" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -63,6 +63,7 @@
     
     <import resource="app-redis.xml" />
     <import resource="app-funds-fundsdata.xml" />
+    <import resource="spring-shiro.xml" />
     
 </beans>
 

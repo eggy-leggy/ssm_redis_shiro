@@ -27,7 +27,10 @@ public class TestController {
 	
 	@RequestMapping(value="/query",method=RequestMethod.GET)
 	public List<FundsBaseBean> qeuryList(){
-		redisClientTemplate.set("ss", "bb");
+		List<FundsBaseBean> rr = fundService.getAllFundsBase();
+		redisClientTemplate.set("ss", rr.toString());
+		System.out.println(redisClientTemplate.exists("ss"));
+		System.out.println(redisClientTemplate.del("ss"));
 		System.out.println(redisClientTemplate.get("ss"));
 		return fundService.getAllFundsBase();
 	}

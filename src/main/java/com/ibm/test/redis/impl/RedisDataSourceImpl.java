@@ -28,11 +28,13 @@ public class RedisDataSourceImpl implements IRedisDataSource {
         return null;
     }
 
-    public void returnResource(ShardedJedis shardedJedis) {
+    @SuppressWarnings("deprecation")
+	public void returnResource(ShardedJedis shardedJedis) {
         shardedJedisPool.returnResource(shardedJedis);
     }
 
-    public void returnResource(ShardedJedis shardedJedis, boolean broken) {
+    @SuppressWarnings("deprecation")
+	public void returnResource(ShardedJedis shardedJedis, boolean broken) {
         if (broken) {
             shardedJedisPool.returnBrokenResource(shardedJedis);
         } else {

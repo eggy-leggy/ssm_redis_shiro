@@ -7,7 +7,6 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.ibm.test.redis.IRedisDataSource;
 
@@ -19,7 +18,6 @@ import redis.clients.jedis.ShardedJedisPipeline;
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;
 
-@Repository("redisClientTemplate")
 public class RedisClientTemplate {
 
     private static final Logger logger = Logger.getLogger(RedisClientTemplate.class);
@@ -2949,7 +2947,8 @@ public class RedisClientTemplate {
         return result;
     }
 
-    public List<Object> pipelined(ShardedJedisPipeline shardedJedisPipeline) {
+    @SuppressWarnings("deprecation")
+	public List<Object> pipelined(ShardedJedisPipeline shardedJedisPipeline) {
         ShardedJedis shardedJedis = redisDataSource.getRedisClient();
         List<Object> result = null;
         if (shardedJedis == null) {
